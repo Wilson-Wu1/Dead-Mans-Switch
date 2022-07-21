@@ -8,6 +8,7 @@ contract DeadManSwitch{
     event Activate(address indexed from, address indexed to, uint256 value, uint256 deadline);
     event DeadlineChange(address indexed from, uint256 newDeadline, uint256 newAmountOfTimeBeforeActivation);
     event WithdrawFundsEarly(address indexed from, uint256 value, uint256 deadline);
+    event AddToExisitingSwitch(address indexed from, uint256 newAmountAdded, uint256 newTotalValue ,uint256 deadline);
 
     struct Info{
         uint256 amount;
