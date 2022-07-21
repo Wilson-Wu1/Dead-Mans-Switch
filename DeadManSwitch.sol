@@ -105,4 +105,17 @@ contract DeadManSwitch{
         require(success, "Transfer Failed");
     }
 
+
+    //Deposit additional funds to the user's exisiting switch
+    function addToExisitingSwitch() payable external{
+        Info storage userInfo = userDepositInfo[msg.sender];
+        require(userInfo.amount > 0, "Address does not have a dead man's switch");
+        require(block.timestamp <= userInfo.deadline, "Already past switch deadline");
+        require(msg.value > 0, "Must add non-zero amount to exisiting switch");
+        
+        userInfo.amount += msg.value;
+
+        emit AddToExisitingSwitch(msg.sender, msg.value, userInfo.amount, userInfo.deadline);
+    }
+
 }
